@@ -17,7 +17,7 @@ module.exports = {
         use: ["babel-loader"],
       },
       {
-        test: /\.css$/,
+        test: /tailwind.css/,
         use: ["style-loader", "css-loader"],
       },
     ],
