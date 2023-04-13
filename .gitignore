@@ -1,0 +1,26 @@
+# git ignore boilerplate file for javascript project in vanilla with webpack
+
+.vscode
+.DS_Store
+.log
+npm-debug.log
+yarn-debug.log*
+yarn-error.log*
+.idea/
+.vscode/
+*.bak
+*.swp
+Thumbs.db
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+#node_modules
+node_modules
+
+#dist   
+dist/
