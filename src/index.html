@@ -1,33 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Todo List in JAvascript
-    </title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todo List in JAvascript</title>
+  </head>
 
-</head>
+  <script src="index.js"></script>
 
-<script src="index.js"></script>
-<body>
-        <h1 class="bg-red-300 text-center text-4xl">Bienvenu sur ta todoList</h1>
-        <!-- projet tidilist -->
-        <div class="w-50 flex align-middle justify-center m-4 gap-3">
-            <input class="bg-blue-200 border-2 rounded ring-emerald-50" type="text" id="input" placeholder="Ajouter une tache">
+  <body>
+    <h1 class="bg-blue-300 text-center text-4xl">Bienvenu sur ta todoList</h1>
+    <!-- projet tidilist -->
+    <div class="w-50 flex align-middle justify-center m-4 gap-3">
+      <input
+        class="bg-blue-200 border-2 rounded ring-emerald-50"
+        type="text"
+        id="input"
+        placeholder="Ajouter une tache"
+      />
 
-        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-            Ajouter
-        </button>
-        </div>
-        <div class="bg-red-300">
-            <ul id="list">
-               >
-            </ul>
-        </div>
-
-
-
-    
-</body>
+      <button
+        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+      >
+        Ajouter
+      </button>
+    </div>
+    <div class="bg-blue-500">
+      <ul class="p-4 text-center w-[100%] grid grid-cols-3" id="list">
+        <li class="border-2 rounded-sm border-green-500 rounded-lg overflow-hidden">
+            <div class="flex flex-col p-2 gap-1">
+                <p class="text-center text-3xl text-white">titre</p>
+                <p>description</p>
+                <button class="box-decoration-slice border-green-500 border bg-green-500 rounded text-white p-2">editer</button>
+                <button class="box-decoration-slice border-red-500 border bg-red-500 rounded text-white p-2">Supprimer</button>
+            </div>
+        </li>
+        <li>tache</li>
+        <li>tache</li>
+        <li>tache</li>
+      </ul>
+    </div>
+  </body>
 </html>
