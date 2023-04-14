@@ -1,5 +1,6 @@
-import "./tailwind.css"
+import "./tailwind.css";
 
 
-console.log('projet javascript');
+import core from "./core";
+
 
