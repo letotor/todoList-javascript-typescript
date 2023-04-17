@@ -1,5 +1,5 @@
-export default ()=>
-    ` <div class="bg-blue-500 justify-center flex">
+export default {
+  mockDom: ` <div class="bg-blue-500 justify-center flex">
     <ul class="p-4 text-center lg:max-w-lg flex flex-col " id="list">
 
       <li class="border-2 rounded-lg border-green-500 overflow-hidden my-4 flex-wrap">
@@ -28,4 +28,5 @@ export default ()=>
       </li>
     </ul>
   </div>
-`;
+`,
+}
