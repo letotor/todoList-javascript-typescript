@@ -18,7 +18,9 @@
     "ascii-art": "^2.8.5",
     "browser-request": "^0.3.3",
     "fs": "^0.0.1-security",
-    "gh": "^2.8.9"
+    "gh": "^2.8.9",
+    "ts-loader": "^9.4.2",
+    "typescript": "^5.0.4"
   },
   "devDependencies": {
     "@babel/cli": "^7.19.3",
