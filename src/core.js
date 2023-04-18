@@ -57,7 +57,15 @@ const toggleTodo = (index) => {
   diplayTodos(todos);
 };
 
-function toggleClass(element, className) {
+const toogleTodoChecked = (index) => {
+  if (index > todos.length) throw new Error("index out of range");
+  todos[index].isChecked = !todos[index].isChecked;
+  diplayTodos(todos);
+};
+
+
+
+const toggleClass=(element, className)=>{
   if (element.classList.contains(className)) {
     element.classList.remove(className);
   } else {
@@ -115,21 +123,30 @@ const createTodoElement = (todo, index) => {
   const div2 = document.createElement("div");
   div2.classList.add("flex-auto", "justify-center");
   const pTitre = document.createElement("p");
-  pTitre.classList.add("text-center", "text-3xl", "text-white", "mx-4");
+  pTitre.classList.add("text-center", "text-3xl", "text-white", "mx-4","line-clamp-1");
   pTitre.innerHTML = todo.titre;
   pTitre.id = `titre${index}`;
+
 
   const pDescription = document.createElement("p");
   pDescription.classList.add(
     "text-justify",
-    "line-clamp-4",
-    "hover:line-clamp-none"
+    "line-clamp-1",
   );
   pDescription.innerHTML = todo.description;
   pDescription.id = `description${index}`;
-
+  pDescription.addEventListener('mouseenter', (e) => {
+    e.preventDefault();
+    toggleClass(pDescription,"line-clamp-none");
+  });
+  pDescription.addEventListener("mouseleave", (e) => {
+    e.preventDefault();
+    toggleClass(pDescription, "line-clamp-none");
+  });
+  
+ 
   const div3 = document.createElement("div");
-  div3.classList.add("flex", "items-center", "gap-2", "flex-auto");
+  div3.classList.add("flex", "items-center", "gap-2");
   const buttonEdit = document.createElement("button");
   buttonEdit.classList.add(
     "box-decoration-slice",
@@ -154,6 +171,12 @@ const createTodoElement = (todo, index) => {
     console.log("edit cliick");
   });
 
+  inputIsChecked.addEventListener("click", (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    toogleTodoChecked(index);
+  });
+
   const buttonDelete = document.createElement("button");
   buttonDelete.classList.add(
     "box-decoration-slice",
@@ -169,10 +192,6 @@ const createTodoElement = (todo, index) => {
   buttonDelete.addEventListener("click", (e) => {
     e.preventDefault();
     e.stopPropagation();
-    console.log(
-      "click suppresion button",
-      buttonDelete.getAttribute("data-index")
-    );
     deleteTodo(buttonDelete.getAttribute("data-index"));
   });
   // construction des noeuds
@@ -186,7 +205,6 @@ const createTodoElement = (todo, index) => {
   div.appendChild(div2);
   div.appendChild(div3);
   li.appendChild(div);
-
   return li;
 };
 
@@ -205,13 +223,12 @@ const modifyTodoElement = (todo, index) => {
   const buttonEdit = liSelect.querySelector("button:first-child");
   const buttonDelete = liSelect.querySelector("button:last-child");
   const isChecked = liSelect.querySelector("input:first-child");
-  
-  // modification des elements
+  isChecked.disabled = true;
+
   pTitre.innerText = todo.titre;
   pDescription.innerText = todo.description;
-  buttonEdit.textContent = "save";
 
-  //creation des nouveau input p
+  //creation des nouveau input 
   const inputTitre = document.createElement("input");
   inputTitre.classList.add(
     "text-center",
@@ -223,8 +240,8 @@ const modifyTodoElement = (todo, index) => {
   inputTitre.value = todo.titre;
   inputTitre.id = `titre${index}`;
   
-    const inputDescription = document.createElement("input");
-    inputDescription.classList.add(
+  const inputDescription = document.createElement("input");
+  inputDescription.classList.add(
       "text-justify",
       "line-clamp-4",
       "rounded",
@@ -232,10 +249,10 @@ const modifyTodoElement = (todo, index) => {
       "hover:line-clamp-none",
       "text-green-500"
     );
-    inputDescription.value = todo.description;
-    inputDescription.id = `description${index}`;
-
-    inputDescription.addEventListener
+  inputDescription.value = todo.description;
+  inputDescription.id = `description${index}`;
+  inputDescription.addEventListener
+  
   const buttonCancel = document.createElement("button");
   buttonCancel.classList.add(
     "box-decoration-slice",
@@ -263,6 +280,7 @@ const modifyTodoElement = (todo, index) => {
   buttonSave.addEventListener("click", (e) => {
     e.preventDefault();
     e.stopPropagation();
+      isChecked.disabled = false;
  editTodo(inputTitre.value, inputDescription.value, index);
   });
 
@@ -272,6 +290,7 @@ const modifyTodoElement = (todo, index) => {
     console.log("click cancel button", buttonEdit.getAttribute("data-index"));
     editTodo(pTitre.innerText, pDescription.innerText, index);
   });
+
 
 const div2 = pTitre.parentElement;
 div2.classList.add("flex", "flex-col",  "gap-2");
@@ -295,16 +314,4 @@ const deleteTodoElement = (index) => {
   document.querySelector("ul").removeChild(li[index]);
 };
 
-const editTodoElement = (index, titre, description) => {
-  const li = document.querySelectorAll("li");
-
-  if (index > li?.length) throw new Error("index out of range");
-  const liCopy = li[index].cloneNode(true);
-  const titreCreated = liCopy.querySelector("p");
-  titreCreated.innerHTML = titre;
-  const descriptionCreated = liCopy.querySelector("p:last-child");
-  descriptionCreated.innerHTML = description;
-  document.querySelector("ul").replaceChild(liCopy, li[index]);
-};
-
-export { addTodo, deleteTodo, editTodo, createTodoElement };
+export { addTodo, deleteTodo, editTodo,toggleClass,createTodoElement };
