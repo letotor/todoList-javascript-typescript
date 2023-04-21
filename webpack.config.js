@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   entry: {
-    main: path.join(__dirname, "src/index.js"),
+    main: path.join(__dirname, "src/index.ts"),
   },
   output: {
     path: path.join(__dirname, "dist"),
@@ -12,9 +12,9 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js/,
-        exclude: /(node_modules)/,
-        use: ["babel-loader"],
+        test: /\.ts$/,
+        use: "ts-loader",
+        exclude: /node_modules/,
       },
       {
         test: /tailwind.css/,
@@ -22,9 +22,12 @@ module.exports = {
       },
     ],
   },
+  resolve: {
+    extensions: [".ts", ".js"],
+  },
   plugins: [
     new HtmlWebpackPlugin({
-      template: path.join(__dirname, "./src/index.html"),
+      template: path.join(__dirname, "./index.html"),
     }),
   ],
   stats: "minimal",
@@ -37,6 +40,4 @@ module.exports = {
     port: 4000,
     hot: true,
   },
-  
-  
 };

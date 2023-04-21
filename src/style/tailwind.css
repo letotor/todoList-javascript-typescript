@@ -534,11 +534,25 @@ video {
   margin-bottom: 1rem;
 }
 
+.line-clamp-1 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+}
+
 .line-clamp-4 {
   overflow: hidden;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 4;
+}
+
+.line-clamp-none {
+  overflow: visible;
+  display: block;
+  -webkit-box-orient: horizontal;
+  -webkit-line-clamp: none;
 }
 
 .flex {
@@ -551,6 +565,10 @@ video {
 
 .w-8 {
   width: 2rem;
+}
+
+.max-w-sm {
+  max-width: 24rem;
 }
 
 .flex-auto {
@@ -796,10 +814,4 @@ video {
 .hover\:text-blue-50:hover {
   --tw-text-opacity: 1;
   color: rgb(239 246 255 / var(--tw-text-opacity));
-}
-
-@media (min-width: 1024px) {
-  .lg\:max-w-lg {
-    max-width: 32rem;
-  }
 }
