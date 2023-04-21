@@ -34,7 +34,7 @@ function toggleTodo(index: number) {
 };
 
 function toggleTodoChecked(index: number) {
-    if (index >= todos.length) throw new Error("index out of range");
+    if (index > todos?.length-1) throw new Error("index out of range");
     todos[index].isChecked = !todos[index].isChecked;
 };
 

@@ -102,11 +102,10 @@ describe("deleteTodo function", () => {
 
 
 describe("toggleTodo function", () => {
-        it('should toggle todo isEditMode', () => {
-            todos.length=0
-            deleteTodo(0);
-            expect(todos).toThrowError("index out of range");
-        });
+    it('should throw an error when index is out of range', () => {
+        todos.length = 0
+        expect(() => toggleTodo(0)).toThrowError("index out of range");
+    });
 
         it("should toggle todo is isEditMode", () => {
         todos.length=0
@@ -147,13 +146,12 @@ describe("toggleTodo function", () => {
 });
 
 describe("toggleTodo Checked function", () => {
-    it('should toggle todo isEditMode', () => {
+    it('should throw an error when index is out of range', () => {
         todos.length = 0
-        deleteTodo(0);
-        expect(todos).toThrowError("index out of range");
+        expect(() => toggleTodo(0)).toThrowError("index out of range");
     });
 
-    it("should toggle todo is isEditMode", () => {
+    it("should toggle todo is isChecked", () => {
         todos.length = 0
         todos.push(
             {
