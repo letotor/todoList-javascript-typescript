@@ -25,7 +25,7 @@ form.addEventListener("submit", (e): void => {
     isEditMode: false,
     isDone: true,
   };
-  addTodo(todo);
+  addTodo(todos, todo);
   render(todos);
 });
 
@@ -161,7 +161,7 @@ const createTodoElement = (todo: Todo, index: number) => {
     e.preventDefault();
     e.stopPropagation();
     console.debug(" click button delete");
-    deleteTodo(index);
+    deleteTodo(todos,index);
     render(todos);
   });
   // construction des noeuds
@@ -268,11 +268,13 @@ const modifyTodoElement = (todo: Todo, index: number): HTMLLIElement => {
     e.preventDefault();
     e.stopPropagation();
     isChecked.disabled = false;
-    editTodo(
-      index,
-      inputTitre.value,
-      inputDescription.value,
-      todos[index].isChecked
+   
+    const task : Partial<Todo> = {
+      titre: inputTitre.value,
+      description: inputDescription.value,
+    }
+    editTodo(todos,
+     task,index
     );
     render(todos);
   });
@@ -281,11 +283,12 @@ const modifyTodoElement = (todo: Todo, index: number): HTMLLIElement => {
     if (pTitre === undefined || pDescription === undefined) return;
     e.preventDefault();
     e.stopPropagation();
+    const task: Partial<Todo> = {
+      titre: pTitre?.innerText,
+      description: pDescription?.innerText,
+    }
     editTodo(
-      index,
-      pTitre.innerText,
-      pDescription?.innerText,
-      todos[index].isChecked
+      todos,task,index
     );
     render(todos);
   });

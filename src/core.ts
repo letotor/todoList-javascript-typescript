@@ -1,26 +1,23 @@
 import Todo from "./interfaces/Todo.interface";
 import todos from "./data/todoInit";
 
-function addTodo(todo: Todo, index = todos.length) {
-  todos.splice(index, 0, todo);
+function addTodo(todos: Todo[], task: Todo, index = todos.length): Todo[] {
+  return todos.splice(index, 0, task);
 }
 
-function editTodo(
-  index: number,
-  inputTitre: string,
-  inputDescription: string,
-  inputIsChecked?: boolean
-) {
-  let todo = {
-    titre: inputTitre,
-    description: inputDescription,
-    isChecked: inputIsChecked,
-    isEditMode: false, // une fois le todo modifier on le passe en mode lecture
-  };
-  todos.splice(index, 1, todo);
+function editTodo(todos: Todo[], task: Partial<Todo>, index: number) {
+    if (index>todos.length-1) throw new Error("index out of range");
+  let taskFind: Todo =
+    todos[index] && todos[index].isEditMode === true ? todos[index] : null;
+  if (!taskFind) throw new Error("task not found");
+  taskFind = {
+    ...taskFind,...task,
+    isEditMode: false,
+  }; // une fois le task modifier on le passe en mode lecture
+  todos.splice(index, 1, taskFind);
 }
 
-function deleteTodo(index: number) {
+function deleteTodo(todos : Todo[],index: number) {
   console.debug("deleteTodo", index, todos);
   todos.splice(index, 1);
 }

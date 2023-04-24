@@ -35,7 +35,7 @@ describe("addTodo function", () => {
       isEditMode: false,
     };
     let todoResult: Todo[] = [...todos, todo];
-    addTodo(todo);
+    addTodo(todos,todo);
     expect(todos).toEqual(todoResult);
   });
 });
@@ -59,6 +59,24 @@ describe("editTodo function", () => {
     );
   });
 
+  it("should throw an error when todolist is empty", () => {
+    todos.length = 0;
+    const task = {
+      titre: "titreModif",
+      description: "descriptionModif",
+    }
+    expect(() => editTodo(todos, task, 0)).toThrowError("index out of range");
+  });
+
+    it("should throw an error when index is out of range", () => {
+    
+    const task = {
+      titre: "titreModif",
+      description: "descriptionModif",
+    }
+    expect(() => editTodo(todos, task,todos.length+1)).toThrowError("index out of range");
+  });
+
   it("should modifiy title and description todo", () => {
     let todoResult: Todo[] = [
       {
@@ -74,7 +92,11 @@ describe("editTodo function", () => {
         isEditMode: false,
       },
     ];
-    editTodo(0, "titreModif", "descriptionModif", false);
+     const task = {
+      titre: "titreModif",
+      description: "descriptionModif",
+    }
+    editTodo(todos, task, 0);
     expect(todos).toEqual(todoResult);
   });
 });
@@ -89,7 +111,7 @@ describe("deleteTodo function", () => {
       isEditMode: false,
     });
     let todoResult: Todo[] = [];
-    deleteTodo(0);
+    deleteTodo(todos,0);
     expect(todos).toEqual(todoResult);
   });
   it("should delete last todo", () => {
@@ -100,7 +122,7 @@ describe("deleteTodo function", () => {
       isChecked: false,
       isEditMode: false,
     });
-    deleteTodo(todos.length - 1);
+    deleteTodo(todos,todos.length - 1);
     expect(todos).toEqual(todoResult);
   });
 });
