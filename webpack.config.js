@@ -28,15 +28,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: path.join(__dirname, "./index.html"),
-    }),
-    new PrettierPlugin({
-      extensions: [".ts", ".tsx"],
-      parser: "@typescript-eslint/parser",
-      // Spécifiez ici les règles de formatage selon votre besoin
-      // Vous pouvez utiliser des fichiers de configuration Prettier
-      // Ou spécifier les options ici
-      // Voir la documentation Prettier pour plus de détails
-    }),
+    })
   ],
   stats: "minimal",
   devtool: "source-map",

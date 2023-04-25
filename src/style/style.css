@@ -28,3 +28,16 @@
     box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
   }
 }
+
+.animate-hide-error {
+  animation: hide-error 7s forwards;
+}
+@keyframes hide-error {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    display: none;
+  }
+}

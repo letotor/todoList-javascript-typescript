@@ -4,11 +4,12 @@ import {
   deleteTodo,
   toggleTodo,
   toggleTodoChecked,
-  todos,
 } from "./core";
+// import todos from "./data/todoInit";
 import Todo from "./interfaces/Todo.interface";
 
 describe("addTodo function", () => {
+  const todos: Todo[] = [];
   beforeEach(() => {
     todos.length = 0;
     todos.push(
@@ -35,12 +36,13 @@ describe("addTodo function", () => {
       isEditMode: false,
     };
     let todoResult: Todo[] = [...todos, todo];
-    addTodo(todos,todo);
+    addTodo(todos, todo);
     expect(todos).toEqual(todoResult);
   });
 });
 
 describe("editTodo function", () => {
+  const todos: Todo[] = [];
   beforeEach(() => {
     todos.length = 0;
     todos.push(
@@ -64,17 +66,18 @@ describe("editTodo function", () => {
     const task = {
       titre: "titreModif",
       description: "descriptionModif",
-    }
+    };
     expect(() => editTodo(todos, task, 0)).toThrowError("index out of range");
   });
 
-    it("should throw an error when index is out of range", () => {
-    
+  it("should throw an error when index is out of range", () => {
     const task = {
       titre: "titreModif",
       description: "descriptionModif",
-    }
-    expect(() => editTodo(todos, task,todos.length+1)).toThrowError("index out of range");
+    };
+    expect(() => editTodo(todos, task, todos.length + 1)).toThrowError(
+      "index out of range"
+    );
   });
 
   it("should modifiy title and description todo", () => {
@@ -92,16 +95,17 @@ describe("editTodo function", () => {
         isEditMode: false,
       },
     ];
-     const task = {
+    const task = {
       titre: "titreModif",
       description: "descriptionModif",
-    }
+    };
     editTodo(todos, task, 0);
     expect(todos).toEqual(todoResult);
   });
 });
 
 describe("deleteTodo function", () => {
+  const todos: Todo[] = [];
   it("should delete a todo with 1 ", () => {
     todos.length = 0;
     todos.push({
@@ -111,7 +115,7 @@ describe("deleteTodo function", () => {
       isEditMode: false,
     });
     let todoResult: Todo[] = [];
-    deleteTodo(todos,0);
+    deleteTodo(todos, 0);
     expect(todos).toEqual(todoResult);
   });
   it("should delete last todo", () => {
@@ -122,15 +126,33 @@ describe("deleteTodo function", () => {
       isChecked: false,
       isEditMode: false,
     });
-    deleteTodo(todos,todos.length - 1);
+    deleteTodo(todos, todos.length - 1);
     expect(todos).toEqual(todoResult);
   });
 });
 
 describe("toggleTodo function", () => {
+  const todos: Todo[] = [];
+  beforeEach(() => {
+    todos.length = 0;
+    todos.push(
+      {
+        titre: "titre1",
+        description: "description1",
+        isChecked: false,
+        isEditMode: true,
+      },
+      {
+        titre: "titre2",
+        description: "description2",
+        isChecked: false,
+        isEditMode: false,
+      }
+    );
+  });
   it("should throw an error when index is out of range", () => {
     todos.length = 0;
-    expect(() => toggleTodo(0)).toThrowError("index out of range");
+    expect(() => toggleTodo(todos, 0)).toThrowError("index out of range");
   });
 
   it("should toggle todo is isEditMode", () => {
@@ -163,15 +185,33 @@ describe("toggleTodo function", () => {
         isEditMode: true,
       },
     ];
-    toggleTodo(1);
+    toggleTodo(todos, 1);
     expect(todos).toEqual(todoResult);
   });
 });
 
 describe("toggleTodo Checked function", () => {
+  const todos: Todo[] = [];
+  beforeEach(() => {
+    todos.length = 0;
+    todos.push(
+      {
+        titre: "titre1",
+        description: "description1",
+        isChecked: false,
+        isEditMode: true,
+      },
+      {
+        titre: "titre2",
+        description: "description2",
+        isChecked: false,
+        isEditMode: false,
+      }
+    );
+  });
   it("should throw an error when index is out of range", () => {
     todos.length = 0;
-    expect(() => toggleTodo(0)).toThrowError("index out of range");
+    expect(() => toggleTodo(todos, 0)).toThrowError("index out of range");
   });
 
   it("should toggle todo is isChecked", () => {
@@ -204,7 +244,7 @@ describe("toggleTodo Checked function", () => {
         isEditMode: false,
       },
     ];
-    toggleTodoChecked(1);
+    toggleTodoChecked(todos, 1);
     expect(todos).toEqual(todoResult);
   });
 });
