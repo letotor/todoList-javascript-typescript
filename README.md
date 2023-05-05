@@ -1,4 +1,4 @@
-# Todolist en Vanilla JS + Tailwind + Webpack + Jest + Typescrip
+# Todolist en Vanilla JS + Tailwind + Webpack + Jest + Typescript
 Cette application Todolist est développée en Vanilla JS puis migration en TYPESCRIPT avec l'utilisation de Tailwind pour la mise en page et de Webpack pour la construction de l'application. Les tests sont effectués à l'aide de Jest, et le développement est guidé par le principe TDD.
 
 ## Fonctionnalités
